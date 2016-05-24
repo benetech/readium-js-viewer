@@ -1,0 +1,1525 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops" xml:lang="en" lang="en">
+<head>
+<title>Sample MathML - ePub 3.0</title>
+<link rel="stylesheet" type="text/css" href="../styles/template.css"/>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+jax: ["input/TeX","input/MathML","output/SVG"],
+extensions: ["tex2jax.js","mml2jax.js","MathEvents.js"],
+TeX: {
+extensions: ["noErrors.js","noUndefined.js","autoload-all.js"]
+},
+MathMenu: {
+showRenderer: false
+},
+menuSettings: {
+zoom: "Click"
+},
+messageStyle: "none"
+});
+</script>
+<script type="text/javascript" src="../mathjax/MathJax.js"></script>
+</head>
+<body>
+<section title="CHAPTER" epub:type="chapter">
+<div>
+<h2 class="chap_num" id="chap1"><span class="right_1" epub:type="pagebreak" id="page_1" title="1"/><small>CHAPTER</small> <span class="font">1</span></h2>
+<h2 class="chap_numa">Multi-Dimensional Signals and Systems</h2>
+<p class="rightq"><i>There are some fundamental differences between the theory of one-dimensional and multi-dimensional signal processing that arise from the related facts that zeros and poles of the multi-dimensional z-transform are not isolated points but functions, and multi-variable polynomials in general do not factor.</i></p>
+<p class="noindent">The theory of multi-dimensional (MD) signals and systems is fundamental to understanding digital image and video processing. Digital images are two-dimensional (2D) sequences (partially ordered) with two discrete spatial variables; they can also be represented by arrays (vectors or matrices). Digital video is a three-dimensional (3D) function of two spatial and one temporal variable, and 3D video is a four-dimensional (4D) function of three spatial and one temporal variable. Digital filters to process these signals are MD systems. MD transforms help to understand spatial and temporal frequency concepts, and physical and normalized frequency variables. This chapter introduces the fundamental concepts of MD signals, transforms, and systems, as well as sampling MD analog signals on lattices and sampling structure conversion, which are essential for digital image and video processing.</p>
+<p class="indent">There are some fundamental differences between the theory of 1D and MD signal processing, which arise from: i) zeros and poles of the MD z-transform are not <span class="right_1" epub:type="pagebreak" id="page_2" title="2"/>isolated points but functions, and ii) multi-variable polynomials in general do not factor. As a result, some 1D signal-processing methods do not readily generalize to multi dimensions, but at the same time, it is possible to develop new algorithms in multi dimensions that do not have 1D counterparts. In the following, we present the main results for MD signals, systems, and transforms in 2D notation, since it is easier to visualize in 2D. Most definitions and results for 2D signal processing can be readily generalized to more than two dimensions, although the notation becomes more cumbersome and abstract and visualization may not be possible.</p>
+<p class="h3"><b>1.1&#160;&#160;&#160;Multi-Dimensional Signals</b></p>
+<p class="noindent" style="margin-bottom:1em;">An MD signal is a multi-variable function or sequence of <span class="math"><math alttext='upper M greater-than-or-equal-to 2'  display="inline" xmlns='http://www.w3.org/1998/Math/MathML'>
+ <mrow>
+  <mi>M</mi><mo>&#x2265;</mo><mn>2</mn>
+ </mrow>
+</math>
+</span> independent continuous, discrete, or mixed variables.</p>
+<p class="Definition"><b>Definition:</b> An analog MD signal <span class="math"><math alttext='s left-parenthesis x right-parenthesis equals s left-parenthesis x 1 comma x 2 comma ellipsis comma x Subscript upper M Baseline right-parenthesis'  xmlns='http://www.w3.org/1998/Math/MathML'>
+ <mrow>
+  <mi>s</mi><mo stretchy='false'>(</mo><mstyle mathvariant='bold' mathsize='normal'><mi>x</mi></mstyle><mo stretchy='false'>)</mo><mo>=</mo><mi>s</mi><mo stretchy='false'>(</mo><msub>
+   <mi>x</mi>
+   <mn>1</mn>
+  </msub>
+  <mo>,</mo><msub>
+   <mi>x</mi>
+   <mn>2</mn>
+  </msub>
+  <mo>,</mo><mo>&#x2026;</mo><mo>,</mo><msub>
+   <mi>x</mi>
+   <mi>M</mi>
+  </msub>
+  <mo stretchy='false'>)</mo>
+ </mrow>
+</math>
+</span> is a function of <i>M</i> continuous variables, where <span class="math"><math alttext='x equals left-bracket x 1 x 2 ellipsis x Subscript upper M Baseline right-bracket Superscript upper T'  xmlns='http://www.w3.org/1998/Math/MathML'>
+ <mrow>
+  <mstyle mathvariant='bold' mathsize='normal'><mi>x</mi></mstyle><mo>=</mo><msup>
+   <mrow>
+    <mo stretchy='false'>[</mo><msub>
+     <mi>x</mi>
+     <mn>1</mn>
+    </msub>
+    <msub>
+     <mi>x</mi>
+     <mn>2</mn>
+    </msub>
+    <mo>&#x2026;</mo><msub>
+     <mi>x</mi>
+     <mi>M</mi>
+    </msub>
+    <mo stretchy='false'>]</mo>
+   </mrow>
+   <mtext>T</mtext>
+  </msup>
+  
+ </mrow>
+</math>
+</span>. The function <span class="math"><math alttext='s left-parenthesis x right-parenthesis'  xmlns='http://www.w3.org/1998/Math/MathML'>
+ <mrow>
+  <mi>s</mi><mo stretchy='false'>(</mo><mstyle mathvariant='bold' mathsize='normal'><mi>x</mi></mstyle><mo stretchy='false'>)</mo>
+ </mrow>
+</math>
+</span> may be scalar valued (e.g., gray-scale image) or vector valued (e.g., color image).</p>
+<p class="Definition"><b>Definition:</b> A discrete MD signal <span class="math"><math alttext='s left-parenthesis n right-parenthesis equals s left-parenthesis n 1 comma n 2 comma ellipsis comma n Subscript upper M Baseline right-parenthesis'  xmlns='http://www.w3.org/1998/Math/MathML'>
+ <mrow>
+  <mi>s</mi><mo stretchy='false'>(</mo><mstyle mathvariant='bold' mathsize='normal'><mi>n</mi></mstyle><mo stretchy='false'>)</mo><mo>=</mo><mi>s</mi><mo stretchy='false'>(</mo><msub>
+   <mi>n</mi>
+   <mn>1</mn>
+  </msub>
+  <mo>,</mo><msub>
+   <mi>n</mi>
+   <mn>2</mn>
+  </msub>
+  <mo>,</mo><mo>&#x2026;</mo><mo>,</mo><msub>
+   <mi>n</mi>
+   <mi>M</mi>
+  </msub>
+  <mo stretchy='false'>)</mo>
+ </mrow>
+</math>
+</span> is an MD sequence defined over a lattice, which is a partially ordered set of <i>M</i>-tuples of integers <span class="math"><math alttext='n equals left-bracket n 1 comma n 2 ellipsis n Subscript upper M Baseline right-bracket upper T'  xmlns='http://www.w3.org/1998/Math/MathML'>
+ <mrow>
+  <mstyle mathvariant='bold' mathsize='normal'><mi>n</mi></mstyle><mo>=</mo><mo stretchy='false'>[</mo><msub>
+   <mi>n</mi>
+   <mn>1</mn>
+  </msub>
+  <mo>,</mo><msub>
+   <mi>n</mi>
+   <mn>2</mn>
+  </msub>
+  <mo>&#x2026;</mo><msub>
+   <mi>n</mi>
+   <mi>M</mi>
+  </msub>
+  <mo stretchy='false'>]</mo><mtext>T</mtext>
+ </mrow>
+</math>
+</span>. Again, <span class="math"><math alttext='s left-parenthesis n right-parenthesis'  xmlns='http://www.w3.org/1998/Math/MathML'>
+ <mrow>
+  <mi>s</mi><mo stretchy='false'>(</mo><mstyle mathvariant='bold' mathsize='normal'><mi>n</mi></mstyle><mo stretchy='false'>)</mo>
+ </mrow>
+</math>
+</span> may be scalar or vector valued.</p>
+<p class="Definition"><b>Definition:</b> A mixed MD signal is a function of <i>M</i> variables some of which are continuous, while others are discrete. An analog-video signal is a mixed signal.</p>
+<p class="h4">1.1.1&#160;&#160;&#160;Finite-Extent Signals and Periodic Signals</p>
+<p class="noindent" style="margin-bottom:1em;">This section discusses MD finite-extent signals and MD periodic signals that are isomorphic to each other.</p>
+<p class="h5"><b>Finite-Extent Signals</b></p>
+<p class="noindent">Since cameras have finite-size sensors and video is recorded over a finite duration, most MD signals of interest are finite extent; i.e., they are defined only within a finite region in space/time, called the &#8220;support.&#8221; The support of a signal may have an MD rectangular or arbitrary shape.</p>
+<p class="indent">A 2D signal is said to have wedge support if it is defined only within two lines emanating from the origin, as shown in <a href="#fig1">Figure 1.1(d)</a>. Quarter-plane (<a href="#fig1">Figure 1.1(a)</a>), half-plane (<a href="#fig1">Figure 1.1(b)</a>), and non-symmetric half-plane (NSHP) (<a href="#fig1">Figure 1.1(c)</a>) supports are special cases of wedge support.</p>
+<figure>
+<p class="image" id="fig1"><img src="../images/page3.jpg" width="288" height="243" alt="Four graph diagrams shows four types of signal support in two dimensions. The horizontal axes on the graphs are vectors labeled n1 and the vertical axes on the graph are vectors labeled n2. The first graph shows a quarter-plane support. The signal points plotted on the graph represent a five-by-four matrix with points on the first column plotted along n2 and points on fourth row plotted along n1. The second graph shows a half-plane support. The signal points plotted on the graph represent an eight-by-four matrix with points on the fourth column plotted along n2 and points on the fourth row plotted along n1. The third graph shows a non-symmetric half-plane support. The signal points plotted on the graph represent an eight-by-four matrix with only five points in the fourth row starting at n2. The points on the fourth column are plotted along n2 and points on the fourth row plotted along n1. The fourth graph shows a wedge support. The signal points are plotted on four columns. The first row has eight points with the fourth point on n2. The second row has seven points with the third point on n2. The third row has six points with the second point on n2. The fourth row has five points with the first point on n2. All points in the fourth row are plotted along n1."/></p>
+<p class="caption"><span class="right_1" epub:type="pagebreak" id="page_3" title="3"/><b>Figure 1.1</b>&#160;&#160;&#160;Support of 2D signals: (a) quarter-plane support; (b) half-plane support; (c) non-symmetric half-plane support; and (d) wedge support.</p>
+</figure>
+<p class="Example"><b>Example.</b> Digital images have finite quarter-plane support, which is depicted in <a href="#fig1">Figure 1.1(a)</a>, i.e., they are defined within a rectangle <span class="math"><math alttext='0 less-than-or-equal-to n 1 less-than-or-equal-to upper N 1 minus 1'  xmlns='http://www.w3.org/1998/Math/MathML'>
+ <mrow>
+  <mn>0</mn><mo>&#x2264;</mo><msub>
+   <mi>n</mi>
+   <mn>1</mn>
+  </msub>
+  <mo>&#x2264;</mo><msub>
+   <mi>N</mi>
+   <mn>1</mn>
+  </msub>
+  <mo>&#x2212;</mo><mn>1</mn>
+ </mrow>
+</math>
+</span> and <span class="math"><math alttext='0 less-than-or-equal-to n 2 less-than-or-equal-to upper N 2 minus 1'  xmlns='http://www.w3.org/1998/Math/MathML'>
+ <mrow>
+  <mn>0</mn><mo>&#x2264;</mo><msub>
+   <mi>n</mi>
+   <mn>2</mn>
+  </msub>
+  <mo>&#x2264;</mo><msub>
+   <mi>N</mi>
+   <mn>2</mn>
+  </msub>
+  <mo>&#x2212;</mo><mn>1</mn>
+ </mrow>
+</math>
+</span>, where <i>N</i><sub>1</sub> and <i>N</i><sub>2</sub> denote the horizontal and vertical size of an image in pixels.</p>
+<p class="h5"><b>Periodic Signals</b></p>
+<p class="noindent">An MD sequence <span class="math">
+<math alttext='s overTilde left-parenthesis n right-parenthesis' xmlns='http://www.w3.org/1998/Math/MathML'>
+ <mrow>
+  <mover accent='true'>
+   <mi>s</mi>
+   <mo>&#x02DC;</mo>
+  </mover>
+  <mo stretchy='false'>(</mo><mstyle mathvariant='bold' mathsize='normal'><mi>n</mi></mstyle><mo stretchy='false'>)</mo>
+ </mrow>
+</math>
+</span>, where <span class="math"><math alttext='n equals left-bracket n 1 n 2 ellipsis n Subscript upper M Baseline right-bracket Superscript upper T'  xmlns='http://www.w3.org/1998/Math/MathML'>
+ <mrow>
+  <mstyle mathvariant='bold' mathsize='normal'><mi>n</mi></mstyle><mo>=</mo><msup>
+   <mrow>
+    <mo stretchy='false'>[</mo><msub>
+     <mi>n</mi>
+     <mn>1</mn>
+    </msub>
+    <msub>
+     <mi>n</mi>
+     <mn>2</mn>
+    </msub>
+    <mo>&#x2026;</mo><msub>
+     <mi>n</mi>
+     <mi>M</mi>
+    </msub>
+    <mo stretchy='false'>]</mo>
+   </mrow>
+   <mtext>T</mtext>
+  </msup>
+  
+ </mrow>
+</math>
+</span>, is said to be periodic with the periodicity matrix <b>N</b> if it satisfies</p>
+<p class="equation"><span class="math"><math alttext='s overTilde left-parenthesis n right-parenthesis equals s overTilde left-parenthesis n plus upper N r right-parenthesis'  xmlns='http://www.w3.org/1998/Math/MathML'>
+ <mrow>
+  <mover accent='true'>
+   <mi>s</mi>
+   <mo>&#x02DC;</mo>
+  </mover>
+  <mo stretchy='false'>(</mo><mstyle mathvariant='bold' mathsize='normal'><mi>n</mi></mstyle><mo stretchy='false'>)</mo><mo>=</mo><mover accent='true'>
+   <mi>s</mi>
+   <mo>&#x02DC;</mo>
+  </mover>
+  <mo stretchy='false'>(</mo><mstyle mathvariant='bold' mathsize='normal'><mi>n</mi></mstyle><mo>+</mo><mstyle mathvariant='bold' mathsize='normal'><mi>N</mi><mi>r</mi></mstyle><mo stretchy='false'>)</mo>
+ </mrow>
+</math>
+</span><span class="label">(1.1a)</span></p>
+<p class="noindent">for all integer-valued <i>M</i>-vectors <b>r</b>, where <b>N</b> is an <span class="math"><math alttext='upper M times upper M'  xmlns='http://www.w3.org/1998/Math/MathML'>
+ <mrow>
+  <mi>M</mi><mo>&#x00D7;</mo><mi>M</mi>
+ </mrow>
+</math>
+</span> periodicity matrix, such that <span class="math"><math alttext='det left-parenthesis upper N right-parenthesis not-equals 0'  xmlns='http://www.w3.org/1998/Math/MathML'><mtext>det</mtext>
+ <mrow>
+  <mo stretchy='false'>(</mo><mstyle mathvariant='bold' mathsize='normal'><mi>N</mi></mstyle><mo stretchy='false'>)</mo><mo>&#x2260;</mo><mn>0</mn>
+ </mrow>
+</math>
+</span>.</p>
+<p class="indent">For 2D signals <span class="math"><math alttext='r equals StartBinomialOrMatrix r 1 Choose r 2 EndBinomialOrMatrix'  xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mtext>r</mtext><mo>=</mo><mrow><mo>[</mo> <mrow>
+<mtable>
+<mtr>
+<mtd>
+<mrow>
+<msub>
+<mi>r</mi>
+<mn>1</mn>
+</msub>
+
+</mrow>
+</mtd>
+</mtr>
+<mtr>
+<mtd>
+<mrow>
+<msub>
+<mi>r</mi>
+<mn>2</mn>
+</msub>
+
+</mrow>
+</mtd>
+</mtr>
+
+</mtable>
+</mrow> <mo>]</mo></mrow>
+</mrow>
+</math></span> and <span class="math"><math alttext='upper N equals left-bracket n Subscript 1 Baseline vertical-bar n Subscript 2 Baseline right-bracket equals Start 2 By 2 Matrix 1st Row 1st Column upper N 11 2nd Column upper N 12 2nd Row 1st Column upper N 21 2nd Column upper N 22 EndMatrix'  xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mtext>N=</mtext><mrow><mo>[</mo> <mrow>
+<msub>
+<mtext>n</mtext>
+<mn>1</mn>
+</msub>
+<mo>&#x007C;</mo><msub>
+<mtext>n</mtext>
+<mn>2</mn>
+</msub>
+
+</mrow> <mo>]</mo></mrow><mo>=</mo><mrow><mo>[</mo> <mrow>
+<mtable>
+<mtr>
+<mtd>
+<mrow>
+<msub>
+<mi>N</mi>
+<mrow>
+<mn>11</mn>
+</mrow>
+</msub>
+
+</mrow>
+</mtd>
+<mtd>
+<mrow>
+<msub>
+<mi>N</mi>
+<mrow>
+<mn>12</mn>
+</mrow>
+</msub>
+
+</mrow>
+</mtd>
+</mtr>
+<mtr>
+<mtd>
+<mrow>
+<msub>
+<mi>N</mi>
+<mrow>
+<mn>21</mn>
+</mrow>
+</msub>
+
+</mrow>
+</mtd>
+<mtd>
+<mrow>
+<msub>
+<mi>N</mi>
+<mrow>
+<mn>22</mn>
+</mrow>
+</msub>
+
+</mrow>
+</mtd>
+</mtr>
+
+</mtable>
+</mrow> <mo>]</mo></mrow>
+</mrow>
+</math></span>, and the vector equation (1.1a) can be expressed in scalar form as</p>
+<p class="equation"><span class="math"><math alttext='StartLayout 1st Row 1st Column s left-parenthesis n 1 comma n 2 right-parenthesis 2nd Column equals 3rd Column s left-parenthesis n 1 plus r 1 upper N 11 comma n 2 plus r 1 upper N 22 right-parenthesis with r Subscript 2 Baseline 4th Column equals 5th Column 0 2nd Row 1st Column Blank 2nd Column equals 3rd Column s left-parenthesis n 1 plus r 2 upper N 12 comma n 2 plus r 2 upper N 22 right-parenthesis with r 1 4th Column equals 5th Column 0 EndLayout'  xmlns='http://www.w3.org/1998/Math/MathML'>
+ <mrow>
+  <mtable>
+   <mtr>
+    <mtd>
+     <mrow>
+      <mi>s</mi><mo stretchy='false'>(</mo><msub>
+       <mi>n</mi>
+       <mn>1</mn>
+      </msub>
+      <mo>,</mo><msub>
+       <mi>n</mi>
+       <mn>2</mn>
+      </msub>
+      <mo stretchy='false'>)</mo>
+     </mrow>
+    </mtd>
+    <mtd>
+     <mo>=</mo>
+    </mtd>
+    <mtd>
+     <mrow>
+      <mi>s</mi><mo stretchy='false'>(</mo><msub>
+       <mi>n</mi>
+       <mn>1</mn>
+      </msub>
+      <mo>+</mo><msub>
+       <mi>r</mi>
+       <mn>1</mn>
+      </msub>
+      <msub>
+       <mi>N</mi>
+       <mrow>
+        <mn>11</mn>
+       </mrow>
+      </msub>
+      <mo>,</mo><msub>
+       <mi>n</mi>
+       <mn>2</mn>
+      </msub>
+      <mo>+</mo><msub>
+       <mi>r</mi>
+       <mn>1</mn>
+      </msub>
+      <msub>
+       <mi>N</mi>
+       <mrow>
+        <mn>22</mn>
+       </mrow>
+      </msub>
+      <mo stretchy='false'>)</mo><mtext>&#x00A0;with&#x00A0;</mtext><msub>
+       <mi>r</mi>
+       <mtext>2</mtext>
+      </msub>
+      
+     </mrow>
+    </mtd>
+    <mtd>
+     <mo>=</mo>
+    </mtd>
+    <mtd>
+     <mn>0</mn>
+    </mtd>
+   </mtr>
+   <mtr>
+    <mtd>
+     <mrow></mrow>
+    </mtd>
+    <mtd>
+     <mo>=</mo>
+    </mtd>
+    <mtd>
+     <mrow>
+      <mi>s</mi><mo stretchy='false'>(</mo><msub>
+       <mi>n</mi>
+       <mn>1</mn>
+      </msub>
+      <mo>+</mo><msub>
+       <mi>r</mi>
+       <mn>2</mn>
+      </msub>
+      <msub>
+       <mi>N</mi>
+       <mrow>
+        <mn>12</mn>
+       </mrow>
+      </msub>
+      <mo>,</mo><msub>
+       <mi>n</mi>
+       <mn>2</mn>
+      </msub>
+      <mo>+</mo><msub>
+       <mi>r</mi>
+       <mn>2</mn>
+      </msub>
+      <msub>
+       <mi>N</mi>
+       <mrow>
+        <mn>22</mn>
+       </mrow>
+      </msub>
+      <mo stretchy='false'>)</mo><mtext>&#x00A0;with&#x00A0;</mtext><msub>
+       <mi>r</mi>
+       <mn>1</mn>
+      </msub>
+      
+     </mrow>
+    </mtd>
+    <mtd>
+     <mo>=</mo>
+    </mtd>
+    <mtd>
+     <mn>0</mn>
+    </mtd>
+   </mtr>
+   
+  </mtable>
+ </mrow>
+</math></span><span class="label">(1.1b)</span>
+</p>
+<p class="indent"><span class="right_1" epub:type="pagebreak" id="page_4" title="4"/>The integer-valued vectors <span class="math"><math alttext='n 1 equals left-parenthesis upper N 11 comma upper N 21 right-parenthesis'  xmlns='http://www.w3.org/1998/Math/MathML'>
+ <mrow>
+  <msub>
+   <mstyle mathvariant='bold' mathsize='normal'><mi>n</mi></mstyle>
+   <mn>1</mn>
+  </msub>
+  <mo>=</mo><mo stretchy='false'>(</mo><msub>
+   <mi>N</mi>
+   <mrow>
+    <mn>11</mn>
+   </mrow>
+  </msub>
+  <mo>,</mo><msub>
+   <mi>N</mi>
+   <mrow>
+    <mn>21</mn>
+   </mrow>
+  </msub>
+  <mo stretchy='false'>)</mo>
+ </mrow>
+</math>
+</span> and <span class="math"><math alttext='n 2 equals left-parenthesis upper N 12 comma upper N 22 right-parenthesis'  xmlns='http://www.w3.org/1998/Math/MathML'>
+ <mrow>
+  <msub>
+   <mstyle mathvariant='bold' mathsize='normal'><mi>n</mi></mstyle>
+   <mn>2</mn>
+  </msub>
+  <mo>=</mo><mo stretchy='false'>(</mo><msub>
+   <mi>N</mi>
+   <mrow>
+    <mn>12</mn>
+   </mrow>
+  </msub>
+  <mo>,</mo><msub>
+   <mi>N</mi>
+   <mrow>
+    <mn>22</mn>
+   </mrow>
+  </msub>
+  <mo stretchy='false'>)</mo>
+ </mrow>
+</math>
+</span> denote displacements from any sample in one period to the corresponding samples in two other periods. In other words, the 2D signal repeats itself at all integer multiples of the shift vectors <b>n</b><sub>1</sub> and <b>n</b><sub>2</sub> as depicted in <a href="#fig2">Figure 1.2.</a> The period defines a unit cell in the (<b>n</b><sub>1</sub>, <b>n</b><sub>2</sub>) plane, which repeats over the whole plane. We note that <b>N</b> is not unique; two arbitrarily chosen linearly independent vectors <b>n</b><sub>1</sub> and <b>n</b><sub>2</sub> that point to the same sample in two different periods can be used to represent the same periodicity pattern.</p>
+<p class="indent">A special case arises when the periodicity matrix is diagonal, given by <span class="math"><math alttext='upper N equals Start 2 By 2 Matrix 1st Row 1st Column upper N 1 2nd Column 0 2nd Row 1st Column 0 2nd Column upper N 2 EndMatrix'  xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mtext>N=</mtext><mrow><mo>[</mo> <mrow>
+<mtable>
+<mtr>
+<mtd>
+<mrow>
+<msub>
+<mi>N</mi>
+<mn>1</mn>
+</msub>
+
+</mrow>
+</mtd>
+<mtd>
+<mn>0</mn>
+</mtd>
+</mtr>
+<mtr>
+<mtd>
+<mn>0</mn>
+</mtd>
+<mtd>
+<mrow>
+<msub>
+<mi>N</mi>
+<mn>2</mn>
+</msub>
+
+</mrow>
+</mtd>
+</mtr>
+
+</mtable>
+</mrow> <mo>]</mo></mrow>
+</mrow>
+</math></span>, which is illustrated in <a href="#fig2">Figure 1.2(b)</a>. In this case, the shift vectors <b>n</b><sub>1</sub> and <b>n</b><sub>2</sub> lie along the horizontal and vertical axes. Then, <span class="math"><math alttext='s left-parenthesis n 1 comma n 2 right-parenthesis'  xmlns='http://www.w3.org/1998/Math/MathML'>
+ <mrow>
+  <mi>s</mi><mo stretchy='false'>(</mo><msub>
+   <mi>n</mi>
+   <mn>1</mn>
+  </msub>
+  <mo>,</mo><msub>
+   <mi>n</mi>
+   <mn>2</mn>
+  </msub>
+  <mo stretchy='false'>)</mo>
+ </mrow>
+</math>
+</span> is said to be rectangularly periodic and satisfies</p>
+<p class="center"><span class="math"><math alttext='s left-parenthesis n 1 comma n 2 right-parenthesis equals s left-parenthesis n 1 plus upper N 1 comma n 2 right-parenthesis equals s left-parenthesis n 1 comma n 2 plus upper N 2 right-parenthesis for all left-parenthesis n 1 comma n 2 right-parenthesis'  xmlns='http://www.w3.org/1998/Math/MathML'>
+ <mrow>
+  <mi>s</mi><mo stretchy='false'>(</mo><msub>
+   <mi>n</mi>
+   <mn>1</mn>
+  </msub>
+  <mo>,</mo><msub>
+   <mi>n</mi>
+   <mn>2</mn>
+  </msub>
+  <mo stretchy='false'>)</mo><mo>=</mo><mi>s</mi><mo stretchy='false'>(</mo><msub>
+   <mi>n</mi>
+   <mn>1</mn>
+  </msub>
+  <mo>+</mo><msub>
+   <mi>N</mi>
+   <mn>1</mn>
+  </msub>
+  <mo>,</mo><msub>
+   <mi>n</mi>
+   <mn>2</mn>
+  </msub>
+  <mo stretchy='false'>)</mo><mo>=</mo><mi>s</mi><mo stretchy='false'>(</mo><msub>
+   <mi>n</mi>
+   <mn>1</mn>
+  </msub>
+  <mo>,</mo><msub>
+   <mi>n</mi>
+   <mn>2</mn>
+  </msub>
+  <mo>+</mo><msub>
+   <mi>N</mi>
+   <mn>2</mn>
+  </msub>
+  <mo stretchy='false'>)</mo>
+ </mrow>
+<mtext>for all</mtext> <mrow>
+  <mo stretchy='false'>(</mo><msub>
+   <mi>n</mi>
+   <mn>1</mn>
+  </msub>
+  <mo>,</mo><msub>
+   <mi>n</mi>
+   <mn>2</mn>
+  </msub>
+  <mo stretchy='false'>)</mo>
+ </mrow>
+</math>
+</span></p>
+<p class="Example"><b>Example.</b>&#160;&#160;&#160;A 2D discrete complex exponential signal</p>
+<p class="center"><span class="math"><math alttext='s left-parenthesis n 1 comma n 2 right-parenthesis equals e Superscript j left-parenthesis omega 1 n 1 plus omega 2 n 2 right-parenthesis'  xmlns='http://www.w3.org/1998/Math/MathML'>
+ <mrow>
+  <mi>s</mi><mo stretchy='false'>(</mo><msub>
+   <mi>n</mi>
+   <mn>1</mn>
+  </msub>
+  <mo>,</mo><msub>
+   <mi>n</mi>
+   <mn>2</mn>
+  </msub>
+  <mo stretchy='false'>)</mo><mo>=</mo><msup>
+   <mi>e</mi>
+   <mrow>
+    <mi>j</mi><mo stretchy='false'>(</mo><msub>
+     <mi>&#x03C9;</mi>
+     <mn>1</mn>
+    </msub>
+    <msub>
+     <mi>n</mi>
+     <mn>1</mn>
+    </msub>
+    <mo>+</mo><msub>
+     <mi>&#x03C9;</mi>
+     <mn>2</mn>
+    </msub>
+    <msub>
+     <mi>n</mi>
+     <mn>2</mn>
+    </msub>
+    <mo stretchy='false'>)</mo>
+   </mrow>
+  </msup>
+  
+ </mrow>
+</math>
+</span></p>
+<p class="indent">is rectangularly periodic in <span class="math"><math alttext='left-parenthesis n 1 comma n 2 right-parenthesis'  xmlns='http://www.w3.org/1998/Math/MathML'>
+ <mrow>
+  <mrow><mo>(</mo>
+   <mrow>
+    <msub>
+     <mi>n</mi>
+     <mn>1</mn>
+    </msub>
+    <mo>,</mo><msub>
+     <mi>n</mi>
+     <mn>2</mn>
+    </msub>
+    
+   </mrow>
+  <mo>)</mo></mrow>
+ </mrow>
+</math>
+</span> with period <span class="math"><math alttext='left-parenthesis upper N 1 comma upper N 2 right-parenthesis'  xmlns='http://www.w3.org/1998/Math/MathML'>
+ <mrow>
+  <mrow><mo>(</mo>
+   <mrow>
+    <msub>
+     <mi>N</mi>
+     <mn>1</mn>
+    </msub>
+    <mo>,</mo><msub>
+     <mi>N</mi>
+     <mn>2</mn>
+    </msub>
+    
+   </mrow>
+  <mo>)</mo></mrow>
+ </mrow>
+</math>
+</span> if</p>
+<p class="center"><span class="math"><math alttext='StartFraction omega 1 Over 2 pi EndFraction equals StartFraction k 1 Over upper N 1 EndFraction and StartFraction omega 2 Over 2 pi EndFraction equals StartFraction k 2 Over upper N 2 EndFraction'  xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mfrac>
+<mrow>
+<msub>
+<mi>&#x03C9;</mi>
+<mn>1</mn>
+</msub>
+
+</mrow>
+<mrow>
+<mn>2</mn><mi>&#x03C0;</mi>
+</mrow>
+</mfrac>
+<mo>=</mo><mfrac>
+<mrow>
+<msub>
+<mi>k</mi>
+<mn>1</mn>
+</msub>
+
+</mrow>
+<mrow>
+<msub>
+<mi>N</mi>
+<mn>1</mn>
+</msub>
+
+</mrow>
+</mfrac>
+<mtext>and</mtext><mfrac>
+<mrow>
+<msub>
+<mi>&#x03C9;</mi>
+<mn>2</mn>
+</msub>
+
+</mrow>
+<mrow>
+<mn>2</mn><mi>&#x03C0;</mi>
+</mrow>
+</mfrac>
+<mo>=</mo><mfrac>
+<mrow>
+<msub>
+<mi>k</mi>
+<mn>2</mn>
+</msub>
+
+</mrow>
+<mrow>
+<msub>
+<mi>N</mi>
+<mn>2</mn>
+</msub>
+
+</mrow>
+</mfrac>
+
+</mrow>
+</math></span></p>
+<p class="noindent">where <span class="math"><math alttext='upper N 1 comma upper N 2 comma upper K 1'  xmlns='http://www.w3.org/1998/Math/MathML'>
+ <mrow>
+  <msub>
+   <mi>N</mi>
+   <mn>1</mn>
+  </msub>
+  <mo>,</mo><msub>
+   <mi>N</mi>
+   <mn>2</mn>
+  </msub>
+  <mo>,</mo><msub>
+   <mi>K</mi>
+   <mn>1</mn>
+  </msub>
+  
+ </mrow>
+</math>
+</span> and <span class="math"><math alttext='upper K 2'  xmlns='http://www.w3.org/1998/Math/MathML'>
+ <mrow>
+  <msub>
+   <mi>K</mi>
+   <mn>2</mn>
+  </msub>
+  
+ </mrow>
+</math>
+</span> are unitless integers, and the units of <span class="math"><math alttext='omega 1'  xmlns='http://www.w3.org/1998/Math/MathML'>
+ <mrow>
+  <msub>
+   <mi>&#x03C9;</mi>
+   <mn>1</mn>
+  </msub>
+  
+ </mrow>
+</math>
+</span> and <span class="math"><math alttext='omega 2'  xmlns='http://www.w3.org/1998/Math/MathML'>
+ <mrow>
+  <msub>
+   <mi>&#x03C9;</mi>
+   <mn>2</mn>
+  </msub>
+  
+ </mrow>
+</math>
+</span> are radians.</p>
+
+<figure>
+<p class="image" id="fig2"><img src="../images/page4.jpg" width="448" height="163" alt="Two graph diagrams show general and rectangular periodicity defined by vectors. The horizontal axes are labeled n1 and vertical axes are labeled n2. The first graph shows the following periodicity of signals. The first quadrant shows a, b, c, d, e, f in period N1 and a, b, c in period N2. The second quadrant shows a, b, c, d, e, f in period N1 and d, e, f, in N2. The third quadrant shows d, e, f in period N1. The fourth quadrant shows a, b, c, in period N1. The second graph shows the following periodicity of signals. The first quadrant shows a, b, c, d, e, f in period N1. The fourth quadrant shows a, b, c, d, e, f in quadrant N1. There are no signals in the second and third quadrants."/></p>
+<p class="caption"><b>Figure 1.2</b>&#160;&#160;&#160;Periodicity in 2D: (a) general periodicity defined by vectors <b><i>n</i></b><sub>1</sub> and <b><i>n</i></b><sub>2</sub> and (b) rectangular periodicity.</p>
+</figure>
+<p class="indent"><span class="right_1" epub:type="pagebreak" id="page_5" title="5"/>Periodic signals and finite-extent signals are isomorphic to one another, since given a rectangularly periodic signal, the main period of the periodic signal can be defined as a finite-extent signal, and given a finite-extent signal we can define a periodic signal through periodic extension</p>
+<p class="equation"><span class="math"><math alttext='s overTilde left-parenthesis n 1 comma n 2 right-parenthesis equals sigma-summation Underscript i 1 equals negative infinity Overscript infinity Endscripts sigma-summation Underscript i 2 equals negative infinity Overscript infinity Endscripts s left-parenthesis n 1 minus i 1 upper N 1 comma n 2 minus i 2 upper N 2 right-parenthesis'  xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mover accent="true">
+<mi>s</mi>
+<mo>&#x02DC;</mo>
+</mover>
+<mo stretchy="false">(</mo><msub>
+<mi>n</mi>
+<mn>1</mn>
+</msub>
+<mo>,</mo><msub>
+<mi>n</mi>
+<mn>2</mn>
+</msub>
+<mo stretchy="false">)</mo><mo>=</mo><munderover>
+<mstyle mathsize="140%" displaystyle="true"><mo>&#x2211;</mo></mstyle>
+<mrow>
+<msub>
+<mi>i</mi>
+<mn>1</mn>
+</msub>
+<mo>=</mo><mo>&#x2212;</mo><mi>&#x221E;</mi>
+</mrow>
+<mi>&#x221E;</mi>
+</munderover>
+<munderover>
+<mstyle mathsize="140%" displaystyle="true"><mo>&#x2211;</mo></mstyle>
+<mrow>
+<msub>
+<mi>i</mi>
+<mn>2</mn>
+</msub>
+<mo>=</mo><mo>&#x2212;</mo><mi>&#x221E;</mi>
+</mrow>
+<mi>&#x221E;</mi>
+</munderover >
+<mi>s</mi><mo stretchy="false">(</mo><msub>
+<mi>n</mi>
+<mn>1</mn>
+</msub>
+<mo>&#x2212;</mo><msub>
+<mi>i</mi>
+<mn>1</mn>
+</msub>
+<msub>
+<mi>N</mi>
+<mn>1</mn>
+</msub>
+<mo>,</mo><msub>
+<mi>n</mi>
+<mn>2</mn>
+</msub>
+<mo>&#x2212;</mo><msub>
+<mi>i</mi>
+<mn>2</mn>
+</msub>
+<msub>
+<mi>N</mi>
+<mn>2</mn>
+</msub>
+<mo stretchy="false">)</mo>
+</mrow>
+</math></span><span class="label">(1.2)</span>
+</p>
+<p class="h4">1.1.2&#160;&#160;&#160;Symmetric Signals</p>
+<p class="noindent">There are multiple forms of symmetry in two or more dimensions. Most common forms of 2D symmetry are two-fold, four-fold, or circular symmetry. Symmetric signals can be finite or infinite extent. In the following, we define symmetry with respect to origin. Symmetry with respect to an arbitrary point can be defined by an appropriate shift of the coordinates.</p>
+<p class="h5"><b>Two-Fold Symmetry</b></p>
+<p class="noindent">Two-fold rectangular symmetry is also called non-symmetric half-plane symmetry and is given by</p>
+<p class="equation"><span class="math"><math alttext='s left-parenthesis n 1 comma n 2 right-parenthesis equals s left-parenthesis minus n 1 comma minus n 2 right-parenthesis'  xmlns='http://www.w3.org/1998/Math/MathML'>
+ <mrow>
+  <mi>s</mi><mo stretchy='false'>(</mo><msub>
+   <mi>n</mi>
+   <mn>1</mn>
+  </msub>
+  <mo>,</mo><msub>
+   <mi>n</mi>
+   <mn>2</mn>
+  </msub>
+  <mo stretchy='false'>)</mo><mo>=</mo><mi>s</mi><mo stretchy='false'>(</mo><mo>&#x2212;</mo><msub>
+   <mi>n</mi>
+   <mn>1</mn>
+  </msub>
+  <mo>,</mo><mo>&#x2212;</mo><msub>
+   <mi>n</mi>
+   <mn>2</mn>
+  </msub>
+  <mo stretchy='false'>)</mo>
+ </mrow>
+</math>
+</span><span class="label">(1.3a)</span></p>
+<p class="indent">The distinct coefficients are depicted by dots in <a href="#fig1">Figure 1.1(c)</a>. The remaining coefficients to complete the square support are determined by the symmetry.</p>
+<p class="h5"><b>Four-Fold Symmetry</b></p>
+<p class="noindent">A more strict form of symmetry is the four-fold rectangular symmetry given by</p>
+<p><span class="math"><math alttext='s left-parenthesis n 1 comma n 2 right-parenthesis equals s left-parenthesis minus n 1 comma minus n 2 right-parenthesis equals s left-parenthesis n 1 comma minus n 2 right-parenthesis'  xmlns='http://www.w3.org/1998/Math/MathML'>
+ <mrow>
+  <mi>s</mi><mo stretchy='false'>(</mo><msub>
+   <mi>n</mi>
+   <mn>1</mn>
+  </msub>
+  <mo>,</mo><msub>
+   <mi>n</mi>
+   <mn>2</mn>
+  </msub>
+  <mo stretchy='false'>)</mo><mo>=</mo><mi>s</mi><mo stretchy='false'>(</mo><mo>&#x2212;</mo><msub>
+   <mi>n</mi>
+   <mn>1</mn>
+  </msub>
+  <mo>,</mo><mo>&#x2212;</mo><msub>
+   <mi>n</mi>
+   <mn>2</mn>
+  </msub>
+  <mo stretchy='false'>)</mo><mo>=</mo><mi>s</mi><mo stretchy='false'>(</mo><msub>
+   <mi>n</mi>
+   <mn>1</mn>
+  </msub>
+  <mo>,</mo><mo>&#x2212;</mo><msub>
+   <mi>n</mi>
+   <mn>2</mn>
+  </msub>
+  <mo stretchy='false'>)</mo>
+ </mrow>
+</math></span></p>
+<p class="noindent">The support of the distinct coefficients in this case is a quarter-plane.</p>
+<p class="h5"><b>Circular Symmetry</b></p>
+<p class="noindent">A signal <span class="math"><math alttext='s left-parenthesis n 1 comma n 2 right-parenthesis'  xmlns='http://www.w3.org/1998/Math/MathML'>
+ <mrow>
+  <mi>s</mi><mo stretchy='false'>(</mo><msub>
+   <mi>n</mi>
+   <mn>1</mn>
+  </msub>
+  <mo>,</mo><msub>
+   <mi>n</mi>
+   <mn>2</mn>
+  </msub>
+  <mo stretchy='false'>)</mo>
+ </mrow>
+</math>
+</span> is circularly symmetric if it is only a function of distance <span class="math"><math alttext='n 1 squared plus n 2 squared'  xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msubsup>
+<mi>n</mi>
+<mn>1</mn>
+<mn>2</mn>
+</msubsup>
+<mo>&#43;</mo><msubsup>
+<mi>n</mi>
+<mn>2</mn>
+<mn>2</mn>
+</msubsup>
+
+</mrow>
+</math></span> from the origin. Circular symmetry implies four-fold symmetry.</p>
+<p class="h4">1.1.3&#160;&#160;&#160;Special Multi-Dimensional Signals</p>
+<p class="noindent">Some special signals play an important role in understanding image- and video-processing filters. They are separable signals, spatial-frequency patterns, MD impulse, and MD unit step signals, which are introduced in the following.</p>
+<p class="h5"><span class="right_1" epub:type="pagebreak" id="page_6" title="6"/><b>Separable Signals</b></p>
+<p class="noindent">An MD signal (function) is separable if</p>
+<p class="equation"><span class="math"><math alttext='s left-parenthesis n 1 comma n 2 comma ellipsis comma n Subscript upper M Baseline right-parenthesis equals s 1 left-parenthesis n 1 right-parenthesis s 2 left-parenthesis n 2 right-parenthesis ellipsis s Subscript upper M Baseline left-parenthesis n Subscript upper M Baseline right-parenthesis'  xmlns='http://www.w3.org/1998/Math/MathML'>
+ <mrow>
+  <mi>s</mi><mo stretchy='false'>(</mo><msub>
+   <mi>n</mi>
+   <mn>1</mn>
+  </msub>
+  <mo>,</mo><msub>
+   <mi>n</mi>
+   <mn>2</mn>
+  </msub>
+  <mo>,</mo><mo>&#x2026;</mo><mo>,</mo><msub>
+   <mi>n</mi>
+   <mi>M</mi>
+  </msub>
+  <mo stretchy='false'>)</mo><mo>=</mo><msub>
+   <mi>s</mi>
+   <mn>1</mn>
+  </msub>
+  <mo stretchy='false'>(</mo><msub>
+   <mi>n</mi>
+   <mn>1</mn>
+  </msub>
+  <mo stretchy='false'>)</mo><msub>
+   <mi>s</mi>
+   <mn>2</mn>
+  </msub>
+  <mo stretchy='false'>(</mo><msub>
+   <mi>n</mi>
+   <mn>2</mn>
+  </msub>
+  <mo stretchy='false'>)</mo><mo>&#x2026;</mo><msub>
+   <mi>s</mi>
+   <mi>M</mi>
+  </msub>
+  <mo stretchy='false'>(</mo><msub>
+   <mi>n</mi>
+   <mi>M</mi>
+  </msub>
+  <mo stretchy='false'>)</mo>
+ </mrow>
+</math>
+</span><span class="label">(1.4)</span></p>
+<p class="noindent">We can make the following observation in the case of 2D signals. A finite-support 2D signal <span class="math"><math alttext='s left-parenthesis n 1 comma n 2 right-parenthesis'  xmlns='http://www.w3.org/1998/Math/MathML'>
+ <mrow>
+  <mi>s</mi><mo stretchy='false'>(</mo><msub>
+   <mi>n</mi>
+   <mn>1</mn>
+  </msub>
+  <mo>,</mo><msub>
+   <mi>n</mi>
+   <mn>2</mn>
+  </msub>
+  <mo stretchy='false'>)</mo>
+ </mrow>
+</math>
+</span> can be represented by a matrix <b>S</b>. If the signal is separable, then the matrix <b>S</b> can be written as the outer product <span class="math"><math alttext='upper S equals s 1 s 2 Superscript upper T'  xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mstyle mathvariant="bold" mathsize="normal"><mi>S</mi></mstyle><mtext>&#x00A0;</mtext><mo>=</mo><mtext>&#x00A0;</mtext><msub>
+<mstyle mathvariant="bold" mathsize="normal"><mi>s</mi></mstyle>
+<mn>1</mn>
+</msub>
+<msubsup>
+<mstyle mathvariant="bold" mathsize="normal"><mi>s</mi></mstyle>
+<mn>2</mn>
+<mi>T</mi>
+</msubsup>
+</mrow>
+</math></span>, where the vectors <b>s</b><sub>1</sub> and <b>s</b><sub>2</sub> denote samples of 1D signals <span class="math"><math alttext='s 1 left-parenthesis n 1 right-parenthesis'  xmlns='http://www.w3.org/1998/Math/MathML'>
+ <mrow>
+  <msub>
+   <mi>s</mi>
+   <mn>1</mn>
+  </msub>
+  <mo stretchy='false'>(</mo><msub>
+   <mi>n</mi>
+   <mn>1</mn>
+  </msub>
+  <mo stretchy='false'>)</mo>
+ </mrow>
+</math>
+</span> and <span class="math"><math alttext='s 2 left-parenthesis n 2 right-parenthesis'  xmlns='http://www.w3.org/1998/Math/MathML'>
+ <mrow>
+  <msub>
+   <mi>s</mi>
+   <mn>2</mn>
+  </msub>
+  <mo stretchy='false'>(</mo><msub>
+   <mi>n</mi>
+   <mn>2</mn>
+  </msub>
+  <mo stretchy='false'>)</mo>
+ </mrow>
+</math>
+</span>, respectively. We note that while a general <span class="math"><math alttext='upper N 1 times upper N 2'  xmlns='http://www.w3.org/1998/Math/MathML'>
+ <mrow>
+  <msub>
+   <mi>N</mi>
+   <mn>1</mn>
+  </msub>
+  <mo>&#x00D7;</mo><msub>
+   <mi>N</mi>
+   <mn>2</mn>
+  </msub>
+  
+ </mrow>
+</math>
+</span> matrix has <span class="math"><math alttext='upper N 1 upper N 2'  xmlns='http://www.w3.org/1998/Math/MathML'>
+ <mrow>
+  <msub>
+   <mi>N</mi>
+   <mn>1</mn>
+  </msub>
+  <msub>
+   <mi>N</mi>
+   <mn>2</mn>
+  </msub>
+  
+ </mrow>
+</math>
+</span> degrees of freedom, the outer product has <span class="math"><math alttext='upper N 1 plus upper N 2'  xmlns='http://www.w3.org/1998/Math/MathML'>
+ <mrow>
+  <msub>
+   <mi>N</mi>
+   <mn>1</mn>
+  </msub>
+  <mo>+</mo><msub>
+   <mi>N</mi>
+   <mn>2</mn>
+  </msub>
+  
+ </mrow>
+</math>
+</span> degrees of freedom.</p>
+
+<p class="Example"><b>Example.</b>&#160;&#160;&#160;A 2D discrete complex exponential signal is separable, since</p>
+
+<p class="center"><span class="math"><math alttext='s left-parenthesis n 1 comma n 2 right-parenthesis equals e Superscript j left-parenthesis omega 1 n 1 plus omega 2 n 2 right-parenthesis Baseline equals e Superscript j omega 1 n 1 Baseline e Superscript j omega 2 n 2 Baseline equals s Subscript 1 Baseline left-parenthesis n 1 right-parenthesis s 2 left-parenthesis n 2 right-parenthesis'  xmlns='http://www.w3.org/1998/Math/MathML'>
+ <mrow>
+  <mi>s</mi><mo stretchy='false'>(</mo><msub>
+   <mi>n</mi>
+   <mn>1</mn>
+  </msub>
+  <mo>,</mo><msub>
+   <mi>n</mi>
+   <mn>2</mn>
+  </msub>
+  <mo stretchy='false'>)</mo><mo>=</mo><msup>
+   <mi>e</mi>
+   <mrow>
+    <mi>j</mi><mo stretchy='false'>(</mo><msub>
+     <mi>&#x03C9;</mi>
+     <mn>1</mn>
+    </msub>
+    <msub>
+     <mi>n</mi>
+     <mn>1</mn>
+    </msub>
+    <mo>+</mo><msub>
+     <mi>&#x03C9;</mi>
+     <mn>2</mn>
+    </msub>
+    <msub>
+     <mi>n</mi>
+     <mn>2</mn>
+    </msub>
+    <mo stretchy='false'>)</mo>
+   </mrow>
+  </msup>
+  <mo>=</mo><msup>
+   <mi>e</mi>
+   <mrow>
+    <mi>j</mi><msub>
+     <mi>&#x03C9;</mi>
+     <mn>1</mn>
+    </msub>
+    <msub>
+     <mi>n</mi>
+     <mn>1</mn>
+    </msub>
+    
+   </mrow>
+  </msup>
+  <msup>
+   <mi>e</mi>
+   <mrow>
+    <mi>j</mi><msub>
+     <mi>&#x03C9;</mi>
+     <mn>2</mn>
+    </msub>
+    <msub>
+     <mi>n</mi>
+     <mn>2</mn>
+    </msub>
+    
+   </mrow>
+  </msup>
+  <msub>
+   <mrow>
+    <mtext>=s</mtext>
+   </mrow>
+   <mtext>1</mtext>
+  </msub>
+  <mo stretchy='false'>(</mo><msub>
+   <mi>n</mi>
+   <mn>1</mn>
+  </msub>
+  <mo stretchy='false'>)</mo><msub>
+   <mi>s</mi>
+   <mn>2</mn>
+  </msub>
+  <mo stretchy='false'>(</mo><msub>
+   <mi>n</mi>
+   <mn>2</mn>
+  </msub>
+  <mo stretchy='false'>)</mo>
+ </mrow>
+</math>
+</span></p>
+<p class="h5"><b>Spatial-Frequency Patterns</b></p>
+<p class="noindent">We can define the horizontal spatial-frequency pattern</p>
+<p class="center"><span class="math"><math alttext='s left-parenthesis n 1 comma n 2 right-parenthesis equals cosine left-parenthesis omega 1 n 1 right-parenthesis'  xmlns='http://www.w3.org/1998/Math/MathML'>
+ <mrow>
+  <mi>s</mi><mo stretchy='false'>(</mo><msub>
+   <mi>n</mi>
+   <mn>1</mn>
+  </msub>
+  <mo>,</mo><msub>
+   <mi>n</mi>
+   <mn>2</mn>
+  </msub>
+  <mo stretchy='false'>)</mo><mo>=</mo><mi>cos</mi><mo stretchy='false'>(</mo><msub>
+   <mi>&#x03C9;</mi>
+   <mn>1</mn>
+  </msub>
+  <msub>
+   <mi>n</mi>
+   <mn>1</mn>
+  </msub>
+  <mo stretchy='false'>)</mo>
+ </mrow>
+</math>
+</span></p>
+<p class="noindent">which is the same for all rows (image lines), or the vertical spatial-frequency pattern</p>
+<p class="center"><span class="math"><math alttext='s left-parenthesis n 1 comma n 2 right-parenthesis equals cosine left-parenthesis omega 2 n 2 right-parenthesis'  xmlns='http://www.w3.org/1998/Math/MathML'>
+ <mrow>
+  <mi>s</mi><mo stretchy='false'>(</mo><msub>
+   <mi>n</mi>
+   <mn>1</mn>
+  </msub>
+  <mo>,</mo><msub>
+   <mi>n</mi>
+   <mn>2</mn>
+  </msub>
+  <mo stretchy='false'>)</mo><mo>=</mo><mi>cos</mi><mo stretchy='false'>(</mo><msub>
+   <mi>&#x03C9;</mi>
+   <mn>2</mn>
+  </msub>
+  <msub>
+   <mi>n</mi>
+   <mn>2</mn>
+  </msub>
+  <mo stretchy='false'>)</mo>
+ </mrow>
+</math>
+</span></p>
+<p class="noindent">which is the same for all columns, or the spatial-frequency pattern with 45-degree angular orientation</p>
+<p class="center"><span class="math"><math alttext='s left-parenthesis n 1 comma n 2 right-parenthesis equals cosine left-parenthesis omega left-parenthesis n 1 minus n 2 right-parenthesis right-parenthesis'  xmlns='http://www.w3.org/1998/Math/MathML'>
+ <mrow>
+  <mi>s</mi><mo stretchy='false'>(</mo><msub>
+   <mi>n</mi>
+   <mn>1</mn>
+  </msub>
+  <mo>,</mo><msub>
+   <mi>n</mi>
+   <mn>2</mn>
+  </msub>
+  <mo stretchy='false'>)</mo><mo>=</mo><mi>cos</mi><mo stretchy='false'>(</mo><mi>&#x03C9;</mi><mo stretchy='false'>(</mo><msub>
+   <mi>n</mi>
+   <mn>1</mn>
+  </msub>
+  <mo>&#x2212;</mo><msub>
+   <mi>n</mi>
+   <mn>2</mn>
+  </msub>
+  <mo stretchy='false'>)</mo><mo stretchy='false'>)</mo>
+ </mrow>
+</math>
+</span></p>
+<p class="h5"><b>MD Impulse</b></p>
+<p class="noindent">An MD impulse is defined by</p>
+<p class="equation">
+<span class="math"><math alttext='delta left-parenthesis n 1 comma n 2 comma midline-horizontal-ellipsis comma n Subscript upper M Baseline right-parenthesis equals StartLayout Enlarged left-brace 1st Row 1st Column 1 2nd Column n 1 equals n 2 equals midline-horizontal-ellipsis equals n Subscript upper M Baseline equals 0 2nd Row 1st Column 0 2nd Column otherwise EndLayout'  xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mtext>&#x03B4;</mtext><mrow><mo>(</mo>
+<mrow>
+<msub>
+<mi>n</mi>
+<mn>1</mn>
+</msub>
+<mo>,</mo><msub>
+<mi>n</mi>
+<mn>2</mn>
+</msub>
+<mo>,</mo><mo>&#x22EF;</mo><mo>,</mo><msub>
+<mi>n</mi>
+<mi>M</mi>
+</msub>
+
+</mrow>
+<mo>)</mo></mrow><mo>=</mo><mrow><mo>{</mo> <mrow>
+<mtable>
+<mtr>
+<mtd>
+<mn>1</mn>
+</mtd>
+<mtd>
+<mrow>
+<msub>
+<mi>n</mi>
+<mn>1</mn>
+</msub>
+<mo>=</mo><msub>
+<mi>n</mi>
+<mn>2</mn>
+</msub>
+<mo>=</mo><mo>&#x22EF;</mo><mo>=</mo><msub>
+<mi>n</mi>
+<mi>M</mi>
+</msub>
+<mo>=</mo><mn>0</mn>
+</mrow>
+</mtd>
+</mtr>
+<mtr>
+<mtd>
+<mn>0</mn>
+</mtd>
+<mtd>
+<mrow>
+<mtext>otherwise</mtext>
+</mrow>
+</mtd>
+</mtr>
+
+</mtable>
+</mrow> </mrow>
+</mrow>
+</math></span><span class="label">(1.5a)</span></p>
+<p class="image" id="fig3"><img src="../images/page7.jpg" width="246" height="140" alt="A three-dimensional graph shows two-dimensional representation of signals. The horizontal axis is labeled n1 and the vertical axis is labeled n2. The signals plotted on the graph are s(0,0), s(0,1), s(1,1), s(1,0), s(3,1), and s(4,2)."/><span class="right_1" epub:type="pagebreak" id="page_7" title="7"/></p>
+<p class="caption"><b>Figure 1.3</b>&#160;&#160;&#160;Two-dimensional signal representation in terms of 2D impulses.</p>
+<p class="indent">A 2D impulse denotes a point source with unity amplitude on the plane. Any discrete image (2D signal) can be expressed as a sum of shifted and weighted impulses as</p>
+<p class="equation"><span class="math"><math alttext='s left-parenthesis n 1 comma n 2 right-parenthesis equals sigma-summation Underscript k 1 equals negative infinity Overscript infinity Endscripts sigma-summation Underscript k 2 equals negative infinity Overscript infinity Endscripts s left-bracket k 1 comma k 2 right-bracket delta left-parenthesis n 1 minus k 1 comma n 2 minus k 2 right-parenthesis'  xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mi>s</mi><mrow><mo>(</mo>
+<mrow>
+<msub>
+<mi>n</mi>
+<mn>1</mn>
+</msub>
+<mo>,</mo><msub>
+<mi>n</mi>
+<mn>2</mn>
+</msub>
+
+</mrow>
+<mo>)</mo></mrow><mo>=</mo><mstyle displaystyle="true">
+<msubsup>
+<mo>&#x2211;</mo>
+<mrow>
+<msub>
+<mi>k</mi><mn>1</mn></msub><mo>=</mo><mo>&#x2212;</mo><mi>&#x221E;</mi>
+</mrow>
+<mi>&#x221E;</mi>
+</msubsup>
+<mrow>
+<mstyle displaystyle="true">
+<msubsup>
+<mo>&#x2211;</mo>
+<mrow>
+<msub>
+<mi>k</mi>
+<mn>2</mn>
+</msub>
+<mo>=</mo><mo>&#x2212;</mo><mi>&#x221E;</mi>
+</mrow>
+<mi>&#x221E;</mi>
+</msubsup>
+<mrow>
+<mi>s</mi><mrow><mo>[</mo> <mrow>
+<msub>
+<mi>k</mi>
+<mn>1</mn>
+</msub>
+<mo>,</mo><msub>
+<mi>k</mi>
+<mn>2</mn>
+</msub>
+
+</mrow> <mo>]</mo></mrow>
+</mrow>
+</mstyle><mi>&#x03B4;</mi><mrow><mo>(</mo>
+<mrow>
+<msub>
+<mi>n</mi>
+<mn>1</mn>
+</msub>
+<mo>&#x2212;</mo><msub>
+<mi>k</mi>
+<mn>1</mn>
+</msub>
+<mo>,</mo><msub>
+<mi>n</mi>
+<mn>2</mn>
+</msub>
+<mo>&#x2212;</mo><msub>
+<mi>k</mi>
+<mn>2</mn>
+</msub>
+
+</mrow>
+<mo>)</mo></mrow>
+</mrow>
+</mstyle>
+</mrow>
+</math></span><span class="label">(1.5b)</span></p>
+<p class="noindent">which is a generic 2D signal representation used in some derivations. This is illustrated in <a href="#fig3">Figure 1.3.</a></p>
+<p class="Example"><b>Example.</b>&#160;&#160;&#160;The 2D impulse is separable, since we can write</p>
+<p class="center"><span class="math"><math alttext='delta left-parenthesis n 1 comma n 2 right-parenthesis equals delta 1 left-parenthesis n 1 right-parenthesis delta 1 left-parenthesis n 2 right-parenthesis'  xmlns='http://www.w3.org/1998/Math/MathML'>
+ <mrow>
+  <mi>&#x03B4;</mi><mo stretchy='false'>(</mo><msub>
+   <mi>n</mi>
+   <mn>1</mn>
+  </msub>
+  <mo>,</mo><msub>
+   <mi>n</mi>
+   <mn>2</mn>
+  </msub>
+  <mo stretchy='false'>)</mo><mo>=</mo><msub>
+   <mi>&#x03B4;</mi>
+   <mn>1</mn>
+  </msub>
+  <mo stretchy='false'>(</mo><msub>
+   <mi>n</mi>
+   <mn>1</mn>
+  </msub>
+  <mo stretchy='false'>)</mo><msub>
+   <mi>&#x03B4;</mi>
+   <mn>1</mn>
+  </msub>
+  <mo stretchy='false'>(</mo><msub>
+   <mi>n</mi>
+   <mn>2</mn>
+  </msub>
+  <mo stretchy='false'>)</mo>
+ </mrow>
+</math>
+</span></p>
+<p class="Example">where <span class="math"><math alttext='delta Subscript 1 Baseline left-parenthesis n 1 right-parenthesis equals StartLayout Enlarged left-brace 1st Row 1st Column 1 2nd Column n 1 equals 0 2nd Row 1st Column 0 2nd Column otherwise EndLayout'  xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub>
+<mi>&#x03B4;</mi>
+<mtext>1</mtext>
+</msub>
+<mo stretchy="false">(</mo><msub>
+<mi>n</mi>
+<mn>1</mn>
+</msub>
+<mo stretchy="false">)</mo><mo>=</mo><mrow><mo>{</mo> <mrow>
+<mtable>
+<mtr>
+<mtd>
+<mn>1</mn>
+</mtd>
+<mtd>
+<mrow>
+<msub>
+<mi>n</mi>
+<mn>1</mn>
+</msub>
+<mo>=</mo><mn>0</mn>
+</mrow>
+</mtd>
+</mtr>
+<mtr>
+<mtd>
+<mn>0</mn>
+</mtd>
+<mtd>
+<mrow>
+<mtext>otherwise</mtext>
+</mrow>
+</mtd>
+</mtr>
+</mtable>
+</mrow> </mrow>
+</mrow>
+</math></span> is the 1D Kronecker delta function.</p>
+<p class="h5"><b>MD Unit Step</b></p>
+<p class="noindent">An MD unit step is often used to indicate the support of an MD signal or the impulse response of an MD system. It can be defined on any support. For example, referring to <a href="#fig1">Figure 1.1</a>, we can define a 2D unit step with quarter-plane, half-plane, or wedge support.</p>
+<p class="Example"><b>Example.</b>&#160;&#160;&#160;2D unit step with quarter-plane support is defined as</p>
+<p class="center"><span class="math"><math alttext='u Subscript upper Q upper P Baseline left-parenthesis n 1 comma n 2 right-parenthesis equals StartLayout Enlarged left-brace 1st Row 1st Column 1 2nd Column n 1 greater-than-or-equal-to 0 comma n 2 greater-than-or-equal-to 0 2nd Row 1st Column 0 2nd Column otherwise EndLayout'  xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub>
+<mi>u</mi>
+<mrow>
+<mi>Q</mi><mi>P</mi>
+</mrow>
+</msub>
+<mo stretchy="false">(</mo><msub>
+<mi>n</mi>
+<mn>1</mn>
+</msub>
+<mo>,</mo><msub>
+<mi>n</mi>
+<mn>2</mn>
+</msub>
+<mo stretchy="false">)</mo><mo>=</mo><mrow><mo>{</mo> <mrow>
+<mtable>
+<mtr>
+<mtd>
+<mn>1</mn>
+</mtd>
+<mtd>
+<mrow>
+<msub>
+<mi>n</mi>
+<mn>1</mn>
+</msub>
+<mo>&#x2265;</mo><mn>0</mn><mo>,</mo><msub>
+<mi>n</mi>
+<mn>2</mn>
+</msub>
+<mo>&#x2265;</mo><mn>0</mn>
+</mrow>
+</mtd>
+</mtr>
+<mtr>
+<mtd>
+<mn>0</mn>
+</mtd>
+<mtd>
+<mrow>
+<mtext>otherwise</mtext>
+</mrow>
+</mtd>
+</mtr>
+</mtable>
+</mrow> </mrow>
+</mrow>
+</math></span>
+</p>
+<p class="noindent"><span class="right_1" epub:type="pagebreak" id="page_8" title="8"/>2D unit step with half-plane support is defined as</p>
+<p class="center"><span class="math"><math alttext='u Subscript upper H upper P Baseline left-parenthesis n 1 comma n 2 right-parenthesis equals StartLayout Enlarged left-brace 1st Row 1st Column 1 2nd Column n 2 greater-than-or-equal-to 0 2nd Row 1st Column 0 2nd Column otherwise EndLayout'  xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub>
+<mi>u</mi>
+<mrow>
+<mi>H</mi><mi>P</mi>
+</mrow>
+</msub>
+<mo stretchy="false">(</mo><msub>
+<mi>n</mi>
+<mn>1</mn>
+</msub>
+<mo>,</mo><msub>
+<mi>n</mi>
+<mn>2</mn>
+</msub>
+<mo stretchy="false">)</mo><mo>=</mo><mrow><mo>{</mo> <mrow>
+<mtable>
+<mtr>
+<mtd>
+<mn>1</mn>
+</mtd>
+<mtd>
+<mrow>
+<msub>
+<mi>n</mi>
+<mn>2</mn>
+</msub>
+<mo>&#x2265;</mo><mn>0</mn>
+</mrow>
+</mtd>
+</mtr>
+<mtr>
+<mtd>
+<mn>0</mn>
+</mtd>
+<mtd>
+<mrow>
+<mtext>otherwise</mtext>
+</mrow>
+</mtd>
+</mtr>
+</mtable>
+</mrow> </mrow>
+</mrow>
+</math></span>
+</p>
+<p class="noindent">The sample values are &#8220;1&#8221; on the dots shown in <a href="#fig1">Figure 1.1(a)</a> and <a href="#fig1">(b)</a>, respectively, and zero elsewhere.</p>
+</div>
+</section>
+</body>
+</html>

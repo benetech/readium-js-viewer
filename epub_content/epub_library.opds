@@ -120,7 +120,7 @@
 </entry>
 
 <entry>
-  <title>IDPF EPUB Test Suite</title>
+  <title  >IDPF EPUB Test Suite</title>
   <author>
     <name>https://github.com/IDPF/epub-testsuite</name>
   </author>
@@ -191,6 +191,18 @@
 <id>READIUM_OPDS_0123456789_14</id>
 
 <link type="application/noop" href="DUMMY_ACQUISITION" rel="http://opds-spec.org/acquisition"/>
+
+</entry>
+
+<entry>
+<title>Custom Elements</title>
+<author>
+  <name>Unknown</name>
+</author>
+<link type="application/epub" href="CustomElementAccessibleBkv004" rel="http://opds-spec.org/acquisition"/>
+
+<updated>2016-05-24T00:00:00Z</updated>
+<id>Benetech</id>
 
 </entry>
 

@@ -195,14 +195,49 @@
 </entry>
 
 <entry>
-<title>Math accessibility</title>
+<title>Math rendered to svg with mathjax (not accessible)</title>
 <author>
   <name>Unknown</name>
 </author>
-<link type="application/epub" href="Accessible ePub sample" rel="http://opds-spec.org/acquisition"/>
+<link type="application/epub" href="math_original_form_svg_output" rel="http://opds-spec.org/acquisition"/>
 
 <updated>2016-05-24T00:00:00Z</updated>
 <id>READIUM_OPDS_0123456789_5</id>
+
+</entry>
+
+<entry>
+<title>Math experimental doesn't work mathjax with speech-rule-engine.</title>
+<author>
+  <name>Unknown</name>
+</author>
+<link type="application/epub" href="math" rel="http://opds-spec.org/acquisition"/>
+
+<updated>2016-05-24T00:00:00Z</updated>
+<id>READIUM_OPDS_0123456789_5</id>
+
+</entry>
+
+<entry>
+<title>Math modern mathjax</title>
+<author>
+  <name>Unknown</name>
+</author>
+<link type="application/epub" href="math_modern_assitiveml_support_enabled_stock" rel="http://opds-spec.org/acquisition"/>
+
+<updated>2016-05-24T00:00:00Z</updated>
+<id>benetech_math_modernjax</id>
+
+</entry>
+<entry>
+<title>Math with no mathjax support</title>
+<author>
+  <name>Unknown</name>
+</author>
+<link type="application/epub" href="math_nojax" rel="http://opds-spec.org/acquisition"/>
+
+<updated>2016-05-24T00:00:00Z</updated>
+<id>Benetech_math_nojax</id>
 
 </entry>
 

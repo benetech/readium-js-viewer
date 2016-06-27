@@ -8,6 +8,19 @@
 <link rel="start" href="epub_library.opds" type="application/atom+xml;profile=opds-catalog;kind=navigation"/>
 
 <entry>
+<title>Test book with Custom Elements.</title>
+<author>
+  <name>Diagram Center</name>
+</author>
+<link type="image/jpeg" href="accessible_epub_3/EPUB/covers/9781449328030_lrg.jpg" rel="http://opds-spec.org/image/thumbnail"/>
+<link type="application/epub" href="CustomElementAccessibleBkv004" rel="http://opds-spec.org/acquisition"/>
+
+<updated>2016-02-12T00:00:00Z</updated>
+<id>READIUM_OPDS_0123456789_1</id>
+
+</entry>
+
+<entry>
 <title>Accessible EPUB 3</title>
 <author>
   <name>Matt Garrish</name>

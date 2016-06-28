@@ -2,29 +2,36 @@
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops">
-<head>
-  <title>Sample 2: Map of North America</title>
-  <link href="../Styles/stylesheet.css" type="text/css" rel="stylesheet"/>
-  <link rel="import" href="custom.html"/>
-</head>
+	<head>
+		<title>Sample 2: Map of North America</title>
+		<link href="../Styles/stylesheet.css" type="text/css" rel="stylesheet"/>
+		<link rel="stylesheet" type="text/css" href="../Styles/bootstrap.min.css"/>
+		<link rel="import" href="custom.html"/>
+	</head>
 
 <body xml:lang="en">
-  <section epub:type="chapter">
+  <section epub:type="chapter" class="container">
     <h1>Sample 2: Map of North America</h1>
-
-		<img src="../images/map.jpg" alt="map of North America"/>
-		<dg-btn-summary aria-label="Show or hide Short Description">Show/Hide Short Description</dg-btn-summary>
-		<dg-btn-longdesc aria-label="Show or hide Long Description">Show/Hide Long Description</dg-btn-longdesc>
-		<div>
-		<dg-summary>
-			A color map marks the Spanish Empire in North America, which extends into present-day Florida, Georgia, Alabama, Mississippi, Louisiana, Texas, New Mexico, Arizona, and California.
-		</dg-summary>
-		<dg-longdesc>
-				Spain's North American empire, circa 1770, extended across the southern part of the continent, reaching from ocean to ocean. The map shows the Native American populations and various cities throughout the empire. The data is presented in the following table: Region | Native Americans | Cities California | Miwok, Alta, Chumash, Ipal | San Francisco (1776), San Jose (1777), Monterey (1770), San Antonio de Padua (1771), San Luis Obispo (1772), Santa Barbara (1782), Los Angeles (1781), San Gabriel (1771), San Juan Capistrano (1776), San Diego (1769) New Mexico | Navajo, Pueblo; the Ute tribe is indicated just north of the border | Santa Fe Texas | Comanche, Lipan Apache, Tonkawa, Hasinai, Coahuiltecan; the Wichita and Quapaw tribes are shown north of the border in the Louisiana region. | San Antonio Mexico| Pima | Monterrey Region along the Gulf of Mexico | Creek, Chickasaw, Choctaw, Lower Creek | New Orleans Florida | St. Augustine
-		</dg-longdesc>
+<div class="roe">
+		<img src="../Images/map.jpg" alt="map of North America"/>
 		</div>
-		
-    <section>
+		<div id="row">
+			<div id="col-xs-1 col-xs-offset-5">
+				<dg-btn-summary aria-label="Show or hide Short Description">Show/Hide Short Description</dg-btn-summary>
+			</div>
+			<div class="col-xs-6">
+				<dg-btn-longdesc aria-label="Show or hide Long Description">Show/Hide Long Description</dg-btn-longdesc>
+			</div>
+		</div>
+		<div class="roe">
+			<dg-summary class="col-xs-6">
+				A color map marks the Spanish Empire in North America, which extends into present-day Florida, Georgia, Alabama, Mississippi, Louisiana, Texas, New Mexico, Arizona, and California.
+			</dg-summary>
+			<dg-longdesc class="col-xs-6">
+				Spain's North American empire, circa 1770, extended across the southern part of the continent, reaching from ocean to ocean. The map shows the Native American populations and various cities throughout the empire. The data is presented in the following table: Region | Native Americans | Cities California | Miwok, Alta, Chumash, Ipal | San Francisco (1776), San Jose (1777), Monterey (1770), San Antonio de Padua (1771), San Luis Obispo (1772), Santa Barbara (1782), Los Angeles (1781), San Gabriel (1771), San Juan Capistrano (1776), San Diego (1769) New Mexico | Navajo, Pueblo; the Ute tribe is indicated just north of the border | Santa Fe Texas | Comanche, Lipan Apache, Tonkawa, Hasinai, Coahuiltecan; the Wichita and Quapaw tribes are shown north of the border in the Louisiana region. | San Antonio Mexico| Pima | Monterrey Region along the Gulf of Mexico | Creek, Chickasaw, Choctaw, Lower Creek | New Orleans Florida | St. Augustine
+			</dg-longdesc>
+		</div>
+    <section class="row">
       <h2 id="makeaccessible">Making This Image Accessible</h2>
 
       <p class="noind">This image can be made accessible by using different levels of descriptive text. The first, a short description, is useful for describing the first level of instructional meaning, which in this case is the location of the border of the Spanish Empire. The second, a longer description that includes tabular data, is used to convey all of the information available in the map.</p>

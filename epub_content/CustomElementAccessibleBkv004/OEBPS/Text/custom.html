@@ -1,20 +1,17 @@
-<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <script src="../Misc/jquery-1.12.0.min.js"></script>
-  <script src="../Misc/bootstrap.min.js"></script>  
-  <script src="../Misc/webcomponents.min.js"></script>  
-  <link rel="stylesheet" type="text/css" href="../Styles/bootstrap.min.css"/>
-  <link rel="import" href="polymer.html"/>
+    <meta charset="UTF-8">
+    <script src="../Misc/jquery-1.12.0.min.js"></script>
+    <script src="../Misc/webcomponents.min.js"></script>
+    <script src="../Misc/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../Styles/bootstrap.min.css">
+    <link rel="import" href="polymer.html">
 </head>
-
 <body>
-  <link rel="import" href="dg-content.html"/>
-
-  <dom-module id="dg-btn-longdesc">  <style>    :host {
+<dom-module id="dg-btn-longdesc">
+    <style>
+        :host {
             display: inline;
             margin-bottom: 1em;
             margin-right: 0.5em;
@@ -36,11 +33,12 @@
             -webkit-border-radius:3px;
             border-radius:3px;
         }
-  </style>  <template>  <content></content>
-
-</template>
-
-  <script>    Polymer({
+    </style>
+    <template>
+        <content></content>
+    </template>
+    <script>
+        Polymer({
             is: "dg-btn-longdesc",
             hostAttributes: {
                 tabindex: 0,
@@ -98,9 +96,11 @@
                 return false;
             }
         });
-  </script></dom-module>
-
-  <dom-module id="dg-btn-summary">  <style>    :host {
+    </script>
+</dom-module>
+<dom-module id="dg-btn-summary">
+    <style>
+        :host {
             display: inline;
             margin-bottom: 1em;
             margin-right: 0.5em;
@@ -122,11 +122,12 @@
             -webkit-border-radius:3px;
             border-radius:3px;
         }
-  </style>  <template>  <content></content>
-
-</template>
-
-  <script>    Polymer({
+    </style>
+    <template>
+        <content></content>
+    </template>
+    <script>
+        Polymer({
             is: "dg-btn-summary",
             hostAttributes: {
                 tabindex: 0,
@@ -184,9 +185,11 @@
                 return false;
             }
         });
-  </script></dom-module>
-
-  <dom-module id="dg-btn-tactiledesc">  <style>    :host {
+    </script>
+</dom-module>
+<dom-module id="dg-btn-tactiledesc">
+    <style>
+        :host {
             display: inline;
             margin-bottom: 1em;
             margin-right: 0.5em;
@@ -208,11 +211,12 @@
             -webkit-border-radius:3px;
             border-radius:3px;
         }
-  </style>  <template>  <content></content>
-
-</template>
-
-  <script>    Polymer({
+    </style>
+    <template>
+        <content></content>
+    </template>
+    <script>
+        Polymer({
             is: "dg-btn-tactiledesc",
             hostAttributes: {
                 tabindex: 0,
@@ -270,9 +274,11 @@
                 return false;
             }
         });
-  </script></dom-module>
-
-  <dom-module id="dg-longdesc">  <style>    :host {
+    </script>
+</dom-module>
+<dom-module id="dg-longdesc">
+    <style>
+        :host {
             display: block;
             background-color: #ffffff;
             color: #007ba8;
@@ -285,21 +291,27 @@
             font-style: normal;
             font-size: 14px;
         }
-  </style>  <template>  <div tabindex="0" id="long_desc">
-     <content></content>
-  </div>
-
-</template>
-
-  <script>    Polymer({
+    </style>
+    <template>
+        <div tabindex="0" id="long_desc" role="region" aria-labelledby="long_desc_heading">
+            <h3 id="long_desc_heading">
+                Long Description:
+            </h3>
+            <content></content>
+        </div>
+    </template>
+    <script>
+        Polymer({
             is: "dg-longdesc",
             hostAttributes: {
                 style: 'display: none;'
             },
         });
-  </script></dom-module>
-
-  <dom-module id="dg-summary">  <style is="custom-style">    :host {
+    </script>
+</dom-module>
+<dom-module id="dg-summary">
+    <style is="custom-style">
+        :host {
             display: block;
             background-color: #ffffff;
             color: #007ba8;
@@ -312,21 +324,27 @@
             font-style: normal;
             font-size: 14px;
         }
-  </style>  <template>  <div tabindex="0" id="short_desc">
-     <content></content>
-  </div>
-
-</template>
-
-  <script>    Polymer({
+    </style>
+    <template>
+        <div tabindex="0" id="short_desc" role="region" aria-labelledby="short_desc_heading">
+            <h3 id="short_desc_heading">
+                Short Description
+            </h3>
+            <content></content>
+        </div>
+    </template>
+    <script>
+        Polymer({
             is: "dg-summary",
             hostAttributes: {
                 style: 'display: none;'
             }
         });
-  </script></dom-module>
-
-  <dom-module id="dg-tactiledesc">  <style is="custom-style">    :host {
+    </script>
+</dom-module>
+<dom-module id="dg-tactiledesc">
+    <style is="custom-style">
+        :host {
             display: block;
             background-color: #ffffff;
             color: #007ba8;
@@ -339,34 +357,38 @@
             font-style: normal;
             font-size: 14px;
         }
-  </style>  <template>  <div id="tactile_desc" tabindex="0">
-     <content></content>
-  </div>
-
-</template>
-
-  <script>    Polymer({
+    </style>
+    <template>
+        <div id="tactile_desc" tabindex="0">
+            <content></content>
+        </div>
+    </template>
+    <script>
+        Polymer({
             is: "dg-tactiledesc",
             hostAttributes: {
                 style: 'display: none;'
             }
         });
-  </script></dom-module>
-
-  <dom-module id="dg-tour">  <template>  <div>
-     <p><strong>Tour:</strong></p>
-
-    <p><content></content></p>
-  </div>
-
-</template>
-
-  <script>    Polymer({
+    </script>
+</dom-module>
+<dom-module id="dg-tour">
+    <template>
+        <div>
+            <p><strong>Tour:</strong></p>
+            <p>
+                <content></content>
+            </p>
+        </div>
+    </template>
+    <script>
+        Polymer({
             is: "dg-tour",
             properties: {
                 source: String
             }
         });
-  </script></dom-module>
+    </script>
+</dom-module>
 </body>
 </html>
